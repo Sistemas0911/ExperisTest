@@ -1,0 +1,29 @@
+<div class="container mt-4">
+    <h2>Lista de Órdenes</h2>
+    <div>
+      <button type="submit" [hidden]="!isUser()" class="btn btn-primary btn-sm custom-green" (click)="GenerarOrden()">Crear Orden</button>
+    </div>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Cliente</th>
+          <th>Fecha</th>
+          <th>Total</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let orden of ordenes">
+          <td>{{ orden.id }}</td>
+          <td>{{ orden.cliente }}</td>
+          <td>{{ orden.fechaCreacion }}</td>
+          <td>{{ orden.total | currency }}</td>
+          <td>
+            <button class="btn btn-primary btn-sm" (click)="verDetalle(orden.id)">Ver Detalle</button>
+            <button class="btn btn-danger btn-sm" (click)="eliminarOrden(orden.id)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

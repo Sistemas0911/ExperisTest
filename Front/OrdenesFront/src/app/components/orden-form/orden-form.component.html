@@ -1,0 +1,34 @@
+<div class="container mt-4">
+    <h2>Registrar Nueva Orden</h2>
+    <form [formGroup]="ordenForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="cliente">Cliente</label>
+        <input type="text" class="form-control" id="cliente" formControlName="cliente" required>
+      </div>
+      <div class="form-group">
+        <label for="fechaCreacion">Fecha Creacion</label>
+        <input type="text" class="form-control" id="fechaCreacion" formControlName="fechaCreacion" required readonly>
+      </div>
+      <div formArrayName="detalles">
+        <div *ngFor="let detalle of detalles.controls; let i = index" [formGroupName]="i" class="mb-3">
+          <h5>Detalle {{ i + 1 }}</h5>
+          <div class="form-group">
+            <label for="producto">Producto</label>
+            <input type="text" class="form-control" id="producto" formControlName="producto" required>
+          </div>
+          <div class="form-group">
+            <label for="cantidad">Cantidad</label>
+            <input type="number" class="form-control" id="cantidad" formControlName="cantidad" required>
+          </div>
+          <div class="form-group">
+            <label for="precioUnitario">Precio Unitario</label>
+            <input type="number" class="form-control" id="precioUnitario" formControlName="precioUnitario" required>
+          </div>
+          <button type="button" class="btn btn-danger btn-sm" (click)="eliminarDetalle(i)">Eliminar Detalle</button>
+        </div>
+      </div>
+  
+      <button type="button" class="btn btn-secondary btn-sm" (click)="agregarDetalle()">Agregar Detalle</button>
+      <button type="submit" class="btn btn-primary btn-sm">Guardar Orden</button>
+    </form>
+  </div>
